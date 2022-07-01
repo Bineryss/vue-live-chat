@@ -25,7 +25,7 @@ const password = ref('')
 const handleSubmit = async () => {
   await login(email.value, password.value)
 
-  if(!error.value) {
+  if(error.value) {
     return;
   }
   emit('login')

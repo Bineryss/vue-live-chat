@@ -13,7 +13,7 @@ import { ref } from 'vue'
 import useSignup from '@/core/UseSignup'
 
 const { error, signup } = useSignup()
-const emit = defineEmits(['signup'])
+const emit = defineEmits()
 
 const userName = ref('')
 const email = ref('')
@@ -22,7 +22,7 @@ const password = ref('')
 const handleSubmit = async () => {
   await signup(email.value, password.value, userName.value)
 
-  if (!error.value) {
+  if (error.value) {
     return
   }
   emit('signup')

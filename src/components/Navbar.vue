@@ -1,8 +1,8 @@
 <template>
-  <nav>
+  <nav v-if="user">
     <div>
-      <p>Hey there... user</p>
-      <p class="email">Currently logged in as... email</p>
+      <p>Hey there {{ user.displayName.toUpperCase() }}</p>
+      <p class="email">Currently logged in as {{ user.email }}</p>
     </div>
     <button @click="handleClick">logout</button>
   </nav>
@@ -10,13 +10,17 @@
 
 <script setup>
 import useLogout from '@/core/UseLogout'
+import getUser from '@/core/GetUser'
+import { useRouter } from 'vue-router'
 
 const { error, logout } = useLogout()
+const { user } = getUser()
+const router = useRouter()
 
 const handleClick = async () => {
   await logout()
-  if (!error.value) {
-
+  if (error.value) {
+    console.log(error.value)
   }
 }
 </script>
