@@ -1,34 +1,33 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    <input type="text" required placeholder="display name" v-model="displayName">
+    <input type="text" required placeholder="user name" v-model="userName">
     <input type="email" required placeholder="email" v-model="email">
     <input type="password" required placeholder="password" v-model="password">
+    <div class="error">{{ error }}</div>
     <button>Sign up</button>
   </form>
 </template>
 
-<script>
-import {ref} from "vue";
+<script setup>
+import { ref } from 'vue'
+import useSignup from '@/core/UseSignup'
 
-export default {
-  setup() {
-    const displayName = ref('')
-    const email = ref('')
-    const password = ref('')
+const { error, signup } = useSignup()
+const emit = defineEmits(['signup'])
 
-    const handleSubmit = () => {
-      console.log(displayName.value)
-    }
+const userName = ref('')
+const email = ref('')
+const password = ref('')
 
-    return {
-      displayName,
-      email,
-      password,
+const handleSubmit = async () => {
+  await signup(email.value, password.value, userName.value)
 
-      handleSubmit
-    }
+  if (!error.value) {
+    return
   }
+  emit('signup')
 }
+
 </script>
 
 <style scoped>

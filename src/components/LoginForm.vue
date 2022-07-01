@@ -1,32 +1,36 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    <input type="email" required placeholder="email" v-model="email">
-    <input type="password" required placeholder="password" v-model="password">
+    <input type="email" required placeholder="email" v-model="email"/>
+    <input
+        type="password"
+        required
+        placeholder="password"
+        v-model="password"
+    />
+    <div class="error">{{ error }}</div>
     <button>Log in</button>
   </form>
 </template>
 
-<script>
-import {ref} from "vue";
+<script setup>
+import { ref } from 'vue'
+import useLogin from '@/core/UseLogin'
 
-export default {
-  setup() {
-    const email = ref('')
-    const password = ref('')
+const { error, login } = useLogin()
+const emit = defineEmits(['login'])
 
-    const handleSubmit = () => {
-    }
+const email = ref('')
+const password = ref('')
 
-    return {
-      email,
-      password,
+const handleSubmit = async () => {
+  await login(email.value, password.value)
 
-      handleSubmit
-    }
+  if(!error.value) {
+    return;
   }
+  emit('login')
+
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
