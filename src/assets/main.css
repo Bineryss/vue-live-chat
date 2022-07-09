@@ -27,10 +27,34 @@ button {
     padding: 10px 20px;
     margin: 10px;
     transition-duration: 200ms;
+    cursor: pointer;
 }
 
 button:active {
     background: white;
     color: #444444;
     box-shadow:0 0 0 2px #5ae4ce inset;
+}
+
+
+/* custom scroll bar */
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #5ae4ce;
+    border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    cursor: pointer;
 }
