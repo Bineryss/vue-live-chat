@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import useLogout from '@/core/UseLogout'
+import useLogout from '@/core/authentication/UseLogout'
 import getUser from '@/core/GetUser'
 import { useRouter } from 'vue-router'
 

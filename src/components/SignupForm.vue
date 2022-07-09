@@ -10,7 +10,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import useSignup from '@/core/UseSignup'
+import useSignup from '@/core/authentication/UseSignup'
 
 const { error, signup } = useSignup()
 const emit = defineEmits()

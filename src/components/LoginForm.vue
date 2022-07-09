@@ -14,7 +14,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import useLogin from '@/core/UseLogin'
+import useLogin from '@/core/authentication/UseLogin'
 
 const { error, login } = useLogin()
 const emit = defineEmits(['login'])
